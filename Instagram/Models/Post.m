@@ -7,6 +7,7 @@
 //
 
 #import "Post.h"
+#import "Comment.h"
 @implementation Post
     
 @dynamic postID;
@@ -16,6 +17,7 @@
 @dynamic image;
 @dynamic likeCount;
 @dynamic commentCount;
+@dynamic created_At;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -29,9 +31,11 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    newPost.created_At = [NSDate date];
     
     [newPost saveInBackgroundWithBlock: completion];
 }
+
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
  

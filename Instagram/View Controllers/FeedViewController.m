@@ -12,9 +12,14 @@
 #import "Post.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-@interface FeedViewController () < UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+#import "HeaderView.h"
+#import "CommentsViewController.h"
+#import "UserViewController.h"
+@interface FeedViewController () < UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, PostCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *posts;
+@property (nonatomic, strong) Post *post;
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -31,9 +36,13 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self fecthPost];
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"HeaderView"];
+    [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HeaderView" bundle:nil]  forHeaderFooterViewReuseIdentifier:@"HeaderView"];
     //[self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:HeaderViewIdentifier];
     // Do any additional setup after loading the view.
+}
+- (void)onTimer {
+    [self.tableView reloadData];
 }
 - (void)fecthPost {
     PFQuery *postQuery = [Post query];
@@ -42,6 +51,7 @@
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
+            NSLog(@"%@", posts);
             self.posts = [posts mutableCopy];
             self.dataSkip = 20;
             [self.tableView reloadData];
@@ -77,9 +87,10 @@
     }];
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    Post *post = self.posts[indexPath.row];
+    Post *post = self.posts[indexPath.section];
     PostCell *postCell = [ tableView dequeueReusableCellWithIdentifier:@"PostCell" ];
     //NSLog(@"%@", post);
+    postCell.delegate = self;
     [postCell loadPost:post];
     return postCell;
 }
@@ -88,12 +99,21 @@
     return self.posts.count;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HeaderView"];
+    HeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HeaderView"];
     Post *post = self.posts[section] ;
-    PFUser *user = post[@"author"];
+    NSLog(@"%@", self.posts[section]);
+    User *user = post[@"author"];
     NSLog (@"%@", user.username);
-    header.textLabel.text = user.username;
+    header.titleLabel.text = user.username;
+    header.profileView.file = user[@"profilePic"];
+    [header.profileView loadInBackground];
+    header.profileView.layer.cornerRadius = 15;
+    header.profileView.layer.masksToBounds = YES;
+    
     return header;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
 }
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -129,15 +149,101 @@
     }];
 }
 
+- (void)postCell:(PostCell *)postCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"commentsSegue" sender:nil];
+    
+}
+- (void)postCell:(PostCell *)postCell User:(Post *)post{
+    self.user = post[@"author"];
+    [self performSegueWithIdentifier:@"userSegue" sender:nil];
+    
+}
+- (void)postCell:(PostCell *)postCell didLike:(Post *)post{
+    self.post = post;
+    NSLog(@"%@", postCell);
+    PFRelation *relation = [self.post relationForKey:@"Liked_By"];
+    PFQuery *query = [relation query];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray* _Nullable likedBy, NSError * _Nullable error) {
+        if (!error) {
+            if(likedBy.count >0){
+                for(NSDictionary *like in likedBy)
+                {
+                    if([like[@"username"] isEqual:[PFUser currentUser].username]){
+                        User *user = [PFUser currentUser];
+                        PFRelation *relation = [self.post relationForKey:@"Liked_By"];
+                        NSNumber *likes = [NSNumber numberWithInt:([self.post[@"likeCount"] intValue] - 1)];
+                        NSLog(@"likes: %@", likes);
+                        self.post[@"likeCount"] = likes;
+                        [relation removeObject:user];
+                        [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                            if(succeeded)
+                            {
+                                NSLog(@"Post unliked");
+                                postCell.likeButton.selected = NO;
+                                 //postCell.likeView.alpha = 0;
+                                
+                                [postCell refresh];
+                            }
+                        }];
+                    }else{
+                        NSLog(@"ELSE INSIDE IF");
+                        User *user = [PFUser currentUser];
+                        PFRelation *relation = [self.post relationForKey:@"Liked_By"];
+                        NSNumber *likes = [NSNumber numberWithInt:([self.post[@"likeCount"] intValue] + 1)];
+                        NSLog(@"likes: %@", likes);
+                        self.post[@"likeCount"] = likes;
+                        [relation addObject:user];
+                        [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                            if(succeeded)
+                            {
+                                NSLog(@"Post liked");
+                                postCell.likeButton.selected = YES;
+                                //postCell.likeView.alpha = 0;
+                                [postCell refresh];
+                            }
+                        }];
+                    }
+                }
+            }else{
+                User *user = [PFUser currentUser];
+                PFRelation *relation = [self.post relationForKey:@"Liked_By"];
+                NSNumber *likes = [NSNumber numberWithInt:([self.post[@"likeCount"] intValue] + 1)];
+                NSLog(@"likes: %@", likes);
+                self.post[@"likeCount"] = likes;
+                [relation addObject:user];
+                [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if(succeeded)
+                    {
+                        NSLog(@"Post liked");
+                        postCell.likeButton.selected = YES;
+                        //postCell.likeView.alpha = 0;
+                        [postCell refresh];
+                    }
+                }];
+            }
+            
+        }
+        else {
+        }
+    }];
+    
+    
+}
+#pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqual:@"userSegue"])
+    {
+        UserViewController *userViewController = [segue destinationViewController];
+        userViewController.user = self.user;
+    }else{
+        CommentsViewController *commentsViewController = [segue destinationViewController];
+        commentsViewController.post = self.post;
+    }
+}
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 @end

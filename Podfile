@@ -9,6 +9,7 @@ target 'Instagram' do
     pod 'Parse'
     pod 'JGProgressHUD'
     pod 'Parse/UI'
+    pod 'DateTools'
 
   target 'InstagramTests' do
     inherit! :search_paths

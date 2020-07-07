@@ -24,6 +24,15 @@
 		98A8429224B24B65007F87F1 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8429124B24B65007F87F1 /* EditViewController.m */; };
 		98A8429524B25B95007F87F1 /* FinalComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8429424B25B95007F87F1 /* FinalComposeViewController.m */; };
 		98A8429824B25CCD007F87F1 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8429724B25CCD007F87F1 /* Post.m */; };
+		98E9950324B3CA720026BCD0 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9950224B3CA720026BCD0 /* HeaderView.m */; };
+		98E9950524B3CA820026BCD0 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98E9950424B3CA820026BCD0 /* HeaderView.xib */; };
+		98E9950B24B3D1130026BCD0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9950A24B3D1130026BCD0 /* Comment.m */; };
+		98E9950E24B3DD480026BCD0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9950D24B3DD480026BCD0 /* ProfileViewController.m */; };
+		98E9951424B3E0750026BCD0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9951324B3E0750026BCD0 /* User.m */; };
+		98E9951724B4DF4E0026BCD0 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9951624B4DF4E0026BCD0 /* CommentsViewController.m */; };
+		98E9951A24B4E36A0026BCD0 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9951924B4E36A0026BCD0 /* CommentCell.m */; };
+		98E9951D24B4FD470026BCD0 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9951C24B4FD470026BCD0 /* ProfileCell.m */; };
+		98E9952124B527F80026BCD0 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E9952024B527F80026BCD0 /* UserViewController.m */; };
 		B1BAEB43FFAA8DF70570F00E /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902B56BFF2FB122889E31AD /* Pods_Instagram_InstagramUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +89,23 @@
 		98A8429424B25B95007F87F1 /* FinalComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinalComposeViewController.m; sourceTree = "<group>"; };
 		98A8429624B25CCD007F87F1 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		98A8429724B25CCD007F87F1 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		98E9950124B3CA720026BCD0 /* HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		98E9950224B3CA720026BCD0 /* HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		98E9950424B3CA820026BCD0 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		98E9950924B3D1130026BCD0 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		98E9950A24B3D1130026BCD0 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		98E9950C24B3DD480026BCD0 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		98E9950D24B3DD480026BCD0 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		98E9951224B3E0750026BCD0 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		98E9951324B3E0750026BCD0 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		98E9951524B4DF4E0026BCD0 /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		98E9951624B4DF4E0026BCD0 /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		98E9951824B4E36A0026BCD0 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		98E9951924B4E36A0026BCD0 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		98E9951B24B4FD470026BCD0 /* ProfileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		98E9951C24B4FD470026BCD0 /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		98E9951F24B527F80026BCD0 /* UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		98E9952024B527F80026BCD0 /* UserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		9DAD3BC6DFF2187B549CDF95 /* Pods-InstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramTests/Pods-InstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		D02DB7C5A838E42204006926 /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE96FB1EB5AACEAE4222DEDC /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +223,13 @@
 			children = (
 				9888FBA424B39475005A9D86 /* PostCell.h */,
 				9888FBA524B39475005A9D86 /* PostCell.m */,
+				98E9950124B3CA720026BCD0 /* HeaderView.h */,
+				98E9950224B3CA720026BCD0 /* HeaderView.m */,
+				98E9950424B3CA820026BCD0 /* HeaderView.xib */,
+				98E9951824B4E36A0026BCD0 /* CommentCell.h */,
+				98E9951924B4E36A0026BCD0 /* CommentCell.m */,
+				98E9951B24B4FD470026BCD0 /* ProfileCell.h */,
+				98E9951C24B4FD470026BCD0 /* ProfileCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,16 +237,17 @@
 		98A8428924B22D85007F87F1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				98E9951E24B527CE0026BCD0 /* Camera View Controllers */,
 				98596BCE24B1ADB9009C84CE /* LoginViewController.h */,
 				98596BCF24B1ADB9009C84CE /* LoginViewController.m */,
 				98596BD624B1BE8C009C84CE /* FeedViewController.h */,
 				98596BD724B1BE8C009C84CE /* FeedViewController.m */,
-				98A8428A24B22D9C007F87F1 /* ComposeViewController.h */,
-				98A8428B24B22D9C007F87F1 /* ComposeViewController.m */,
-				98A8429024B24B65007F87F1 /* EditViewController.h */,
-				98A8429124B24B65007F87F1 /* EditViewController.m */,
-				98A8429324B25B95007F87F1 /* FinalComposeViewController.h */,
-				98A8429424B25B95007F87F1 /* FinalComposeViewController.m */,
+				98E9950C24B3DD480026BCD0 /* ProfileViewController.h */,
+				98E9950D24B3DD480026BCD0 /* ProfileViewController.m */,
+				98E9951524B4DF4E0026BCD0 /* CommentsViewController.h */,
+				98E9951624B4DF4E0026BCD0 /* CommentsViewController.m */,
+				98E9951F24B527F80026BCD0 /* UserViewController.h */,
+				98E9952024B527F80026BCD0 /* UserViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -223,8 +257,25 @@
 			children = (
 				98A8429624B25CCD007F87F1 /* Post.h */,
 				98A8429724B25CCD007F87F1 /* Post.m */,
+				98E9950924B3D1130026BCD0 /* Comment.h */,
+				98E9950A24B3D1130026BCD0 /* Comment.m */,
+				98E9951224B3E0750026BCD0 /* User.h */,
+				98E9951324B3E0750026BCD0 /* User.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		98E9951E24B527CE0026BCD0 /* Camera View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				98A8428A24B22D9C007F87F1 /* ComposeViewController.h */,
+				98A8428B24B22D9C007F87F1 /* ComposeViewController.m */,
+				98A8429024B24B65007F87F1 /* EditViewController.h */,
+				98A8429124B24B65007F87F1 /* EditViewController.m */,
+				98A8429324B25B95007F87F1 /* FinalComposeViewController.h */,
+				98A8429424B25B95007F87F1 /* FinalComposeViewController.m */,
+			);
+			path = "Camera View Controllers";
 			sourceTree = "<group>";
 		};
 		F2EB4FF89F9DE507714DF187 /* Frameworks */ = {
@@ -346,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98596BA924B1A752009C84CE /* LaunchScreen.storyboard in Resources */,
+				98E9950524B3CA820026BCD0 /* HeaderView.xib in Resources */,
 				98596BA624B1A752009C84CE /* Assets.xcassets in Resources */,
 				98596BA424B1A751009C84CE /* Main.storyboard in Resources */,
 				98596BD524B1B108009C84CE /* Billabong.ttf in Resources */,
@@ -476,14 +528,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E9951424B3E0750026BCD0 /* User.m in Sources */,
 				98596BD024B1ADB9009C84CE /* LoginViewController.m in Sources */,
+				98E9950324B3CA720026BCD0 /* HeaderView.m in Sources */,
 				98596BD824B1BE8C009C84CE /* FeedViewController.m in Sources */,
+				98E9950B24B3D1130026BCD0 /* Comment.m in Sources */,
 				98596B9B24B1A751009C84CE /* AppDelegate.m in Sources */,
+				98E9952124B527F80026BCD0 /* UserViewController.m in Sources */,
 				98A8429524B25B95007F87F1 /* FinalComposeViewController.m in Sources */,
 				98A8428C24B22D9C007F87F1 /* ComposeViewController.m in Sources */,
 				9888FBA624B39475005A9D86 /* PostCell.m in Sources */,
+				98E9951D24B4FD470026BCD0 /* ProfileCell.m in Sources */,
 				98A8429224B24B65007F87F1 /* EditViewController.m in Sources */,
 				98596BAC24B1A752009C84CE /* main.m in Sources */,
+				98E9950E24B3DD480026BCD0 /* ProfileViewController.m in Sources */,
+				98E9951724B4DF4E0026BCD0 /* CommentsViewController.m in Sources */,
+				98E9951A24B4E36A0026BCD0 /* CommentCell.m in Sources */,
 				98A8429824B25CCD007F87F1 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

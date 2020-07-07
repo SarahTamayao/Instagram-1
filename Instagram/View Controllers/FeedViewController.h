@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int dataSkip;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

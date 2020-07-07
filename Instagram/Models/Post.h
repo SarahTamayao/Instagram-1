@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Parse/Parse.h"
+#import <Parse/Parse.h>
 @interface Post : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *postID;
@@ -17,6 +17,7 @@
 @property (nonatomic, strong) PFFileObject *image;
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *commentCount;
+@property (nonatomic, strong) NSDate *created_At;
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 //+ (NSMutableArray *)postsWithArray:(NSArray *)dictionaries;
