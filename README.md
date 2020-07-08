@@ -35,9 +35,12 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] User can add filters to a photo before posting it!
-- [x] Double tap to like
+- [x] User can add filters to a photo before posting it
+- [x] User can double tap a post to like it
 - [x] User profiles contain all user pictures
+- [x] User can post and view stories
+- [x] User can follow and unfollow others, and only posts from followed users will display in the home tab
+- [] User can access a explore page with a global feed to find more users to follow
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
