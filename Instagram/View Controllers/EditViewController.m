@@ -30,46 +30,41 @@
     [self.grayImage setUserInteractionEnabled:YES];
     [self.grayImage addGestureRecognizer:grayGestureRecognizer];
     UITapGestureRecognizer *originalGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOriginal:)];
-       originalGestureRecognizer.numberOfTapsRequired = 1;
-       [self.originalImage setUserInteractionEnabled:YES];
-       [self.originalImage addGestureRecognizer:originalGestureRecognizer];
+    originalGestureRecognizer.numberOfTapsRequired = 1;
+    [self.originalImage setUserInteractionEnabled:YES];
+    [self.originalImage addGestureRecognizer:originalGestureRecognizer];
     self.normalLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     self.originalImage.image = self.image;
     UIImage *grayImage = [self grayscaleImage:self.mainImage.image];
-       self.grayImage.image = grayImage;
-    
+    self.grayImage.image = grayImage;
 }
+
+#pragma mark - Editing
 - (UIImage *)grayscaleImage:(UIImage *)image {
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIImage *grayscale = [ciImage imageByApplyingFilter:@"CIColorControls"
-        withInputParameters: @{kCIInputSaturationKey : @0.0}];
-    
+                                    withInputParameters: @{kCIInputSaturationKey : @0.0}];
     return [UIImage imageWithCIImage:grayscale];
 }
+
 - (IBAction)didTapGray:(UISwipeGestureRecognizer *)sender {
     self.grayLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     self.normalLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-    
-
     self.mainImage.image = self.grayImage.image;
 }
+
 - (IBAction)didTapOriginal:(UISwipeGestureRecognizer *)sender {
     self.normalLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     self.grayLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-    
     self.mainImage.image = self.image;
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     FinalComposeViewController *finalComposeViewController = [segue destinationViewController];
     finalComposeViewController.image = self.image;
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 @end

@@ -11,44 +11,31 @@
 #import <Parse/Parse.h>
 
 @interface StoriesViewController () <UIPageViewControllerDataSource>
-
-
 @end
 
 @implementation StoriesViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSource = self;
-    //NSLog(@"%@", self.stories);
     NSLog(@"INDEX: %@", self.index);
     int index = [self.index intValue];
     StoryViewController *initialVC = (StoryViewController *)[self viewControllerAtIndex:index];
     NSArray *viewControllerss = [NSArray arrayWithObject:initialVC];
-    
     [self setViewControllers:viewControllerss direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    // Do any additional setup after loading the view.
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+#pragma mark - Pagination
 - (UIViewController*) viewControllerAtIndex: (NSUInteger) index{
     StoryViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"StoryViewController"];
     Stories *story = self.stories[index];
     viewController.story = story;
     viewController.index = index;
-    
     return viewController;
     
 }
+
 - (nullable UIViewController *)pageViewController:(nonnull UIPageViewController *)pageViewController viewControllerAfterViewController:(nonnull UIViewController *)viewController {
-    
     NSUInteger index = ((StoryViewController*)viewController).index;
     if(index == NSNotFound)
     {
@@ -60,8 +47,6 @@
         return nil;
     }
     return [self viewControllerAtIndex:index];
-
-    
 }
 
 - (nullable UIViewController *)pageViewController:(nonnull UIPageViewController *)pageViewController viewControllerBeforeViewController:(nonnull UIViewController *)viewController {
@@ -71,8 +56,16 @@
     }
     index--;
     return [self viewControllerAtIndex:index];
-    
 }
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 @end
 
 

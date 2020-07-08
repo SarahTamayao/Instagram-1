@@ -24,13 +24,13 @@
     self.captionText.delegate = self;
     self.captionText.text = @"Write a caption...";
     self.captionText.textColor = [UIColor lightGrayColor];
-    // Do any additional setup after loading the view.
 }
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@"Write a caption..."]) {
-         textView.text = @"";
-         textView.textColor = [UIColor blackColor]; //optional
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
     }
     [textView becomeFirstResponder];
 }
@@ -39,7 +39,7 @@
 {
     if ([textView.text isEqualToString:@""]) {
         textView.text = @"Write a caption...";
-        textView.textColor = [UIColor lightGrayColor]; //optional
+        textView.textColor = [UIColor lightGrayColor];
     }
     [textView resignFirstResponder];
 }
@@ -50,21 +50,19 @@
     [Post postUserImage:self.image withCaption:self.captionText.text withCompletion:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"POSTED");
-                [HUD dismiss];
-                    [self performSegueWithIdentifier:@"back" sender:nil];
-        } else {
-            //NSLog(@"%@", error.localizedDescription);
+            [HUD dismiss];
+            [self performSegueWithIdentifier:@"back" sender:nil];
         }
     }];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

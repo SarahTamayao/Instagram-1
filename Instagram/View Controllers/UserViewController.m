@@ -63,30 +63,28 @@
             }
             [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
                 for(PFUser *user in following){
-                           if([user.username isEqual:(self.user.username)]){
-                               if(isItMe){
-                                   self.followButton.titleLabel.text = @"Unfollow";
-                               }
-                               NSLog(@"yessir");
-                               self.followerCount += 1;
-                           }
+                    if([user.username isEqual:(self.user.username)]){
+                        if(isItMe){
+                            self.followButton.titleLabel.text = @"Unfollow";
+                        }
+                        self.followerCount += 1;
                     }
+                }
                 self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
-               }];
+            }];
         }
         NSLog(@"%d", self.followerCount);
-
+        
     }];
     PFRelation *relation = [self.user relationForKey:@"Following"];
     PFQuery *query = [relation query];
     [query includeKey:@"author"];
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
-            self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
+        self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
     }];
     [self.photoImageView loadInBackground];
     [self fecthPost];
-    // Do any additional setup after loading the view.
 }
 - (void)profileCell:(ProfileCell *)profileCell didTap:(Post *)post{
     self.post = post;
@@ -106,8 +104,6 @@
             self.posts = [posts mutableCopy];
             self.postLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.posts.count];
             [self.collectionView reloadData];
-        }
-        else {
         }
     }];
 }
@@ -142,11 +138,9 @@
                         [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                             if(succeeded){
                                 NSLog(@"Unfollowing %@", self.user.username);
-                                 self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount-1];
+                                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount-1];
                                 self.followerCount -=1;
                                 self.followButton.titleLabel.text = @"Follow";
-                                //[self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
-                            }else{
                             }
                         }];
                     }else{
@@ -159,15 +153,11 @@
                                 self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount+1];
                                 self.followerCount +=1;
                                 self.followButton.titleLabel.text = @"Unfollow";
-                                //[self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
-                            }else{
-                                
                             }
                         }];
                     }
                 }
             }else{
-                
                 User *currenUser = [PFUser currentUser];
                 PFRelation *relation = [currenUser relationForKey:@"Following"];
                 [relation addObject:self.user];
@@ -177,30 +167,18 @@
                         self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount+1];
                         self.followerCount +=1;
                         self.followButton.titleLabel.text = @"Unfollow";
-                        //[self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
-                    }else{
-                        
                     }
                 }];
             }
-            
-        }
-        else {
         }
     }];
-    
-    
 }
 
 
 
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     CommentsViewController *commentsViewController = [segue destinationViewController];
     commentsViewController.post = self.post;
 }

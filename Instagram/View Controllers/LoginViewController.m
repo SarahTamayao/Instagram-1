@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.passwordField.secureTextEntry = true;
-    // Do any additional setup after loading the view.
 }
 - (IBAction)onTapSignUp:(id)sender {
     [self registerUser];
@@ -29,16 +28,11 @@
 - (IBAction)onTapLogIn:(id)sender {
     [self loginUser];
 }
-
+ #pragma mark - Logic
 - (void)registerUser {
-    // initialize a user object
     PFUser *newUser = [PFUser user];
-    
-    // set user properties
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
-    
-    // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -63,6 +57,7 @@
         }
     }];
 }
+ #pragma mark - Animation
 - (IBAction)editBegin:(id)sender {
     NSLog(@"Here");
     [UIView animateWithDuration:0.3 animations:^{
@@ -75,19 +70,16 @@
 }
 - (IBAction)editEnd:(id)sender {
     [UIView animateWithDuration:0.3 animations:^{
-    self.passwordField.frame = CGRectMake(self.passwordField.frame.origin.x, self.passwordField.frame.origin.y + 100, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
-    self.usernameField.frame = CGRectMake(self.usernameField.frame.origin.x, self.usernameField.frame.origin.y + 100, self.usernameField.frame.size.width, self.usernameField.frame.size.height);
-    self.mainLabel.frame = CGRectMake(self.mainLabel.frame.origin.x, self.mainLabel.frame.origin.y + 100, self.mainLabel.frame.size.width, self.mainLabel.frame.size.height);
-    self.loginButton.frame = CGRectMake(self.loginButton.frame.origin.x, self.loginButton.frame.origin.y + 100, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
+        self.passwordField.frame = CGRectMake(self.passwordField.frame.origin.x, self.passwordField.frame.origin.y + 100, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
+        self.usernameField.frame = CGRectMake(self.usernameField.frame.origin.x, self.usernameField.frame.origin.y + 100, self.usernameField.frame.size.width, self.usernameField.frame.size.height);
+        self.mainLabel.frame = CGRectMake(self.mainLabel.frame.origin.x, self.mainLabel.frame.origin.y + 100, self.mainLabel.frame.size.width, self.mainLabel.frame.size.height);
+        self.loginButton.frame = CGRectMake(self.loginButton.frame.origin.x, self.loginButton.frame.origin.y + 100, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
     }];
     
 }
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:YES];
 }
-
-
-
 /*
  #pragma mark - Navigation
  

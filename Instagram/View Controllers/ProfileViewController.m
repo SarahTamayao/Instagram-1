@@ -35,7 +35,6 @@
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth * 0.9;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    
     User *user = [PFUser currentUser];
     self.navigationItem.title = user[@"username"];
     self.usernameLabel.text = user[@"username"];
@@ -79,14 +78,13 @@
     }];
     [self.photoImageView loadInBackground];
     [self fecthPost];
-    // Do any additional setup after loading the view.
-}
-- (void)profileCell:(ProfileCell *)profileCell didTap:(Post *)post{
-    self.post = post;
-    NSLog(@"Hello");
-    [self performSegueWithIdentifier:@"detailsSegue" sender:nil];
 }
 
+- (void)profileCell:(ProfileCell *)profileCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"detailsSegue" sender:nil];
+}
+#pragma mark - Network Request
 - (void)fecthPost {
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
@@ -100,10 +98,10 @@
             self.postLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.posts.count];
             [self.collectionView reloadData];
         }
-        else {
-        }
     }];
 }
+
+#pragma mark - Image
 - (IBAction)onProfilePicEdit:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -114,11 +112,9 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     NSData *imageData = UIImagePNGRepresentation(editedImage);
-    // get image data and check if that is not nil
     PFFileObject *profilePicture = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
     User *user = [PFUser currentUser];
     user.profilePic = profilePicture;
@@ -129,10 +125,10 @@
             NSLog(@"Profile Pic added");
         }
     }];
-    
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - CollectionView
  - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
@@ -148,10 +144,7 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     CommentsViewController *commentsViewController = [segue destinationViewController];
     commentsViewController.post = self.post;
 }
