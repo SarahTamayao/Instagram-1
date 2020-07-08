@@ -44,8 +44,8 @@
     NSDate *timeAgo = [NSDate dateWithTimeInterval:0 sinceDate:date];
     self.dateLabel.text = timeAgo.timeAgoSinceNow;
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
-       [self.usernameLabel addGestureRecognizer:profileTapGestureRecognizer];
-       [self.usernameLabel setUserInteractionEnabled:YES];
+    [self.usernameLabel addGestureRecognizer:profileTapGestureRecognizer];
+    [self.usernameLabel setUserInteractionEnabled:YES];
     
 }
 
@@ -57,7 +57,7 @@
     [self.commentField resignFirstResponder];
     return YES;
 }
-
+#pragma mark - Network
 - (void)fetchComments {
     PFRelation *relation = [self.post relationForKey:@"Comment"];
     PFQuery *query = [relation query];
@@ -69,9 +69,6 @@
             self.comments = [comments mutableCopy];
             NSLog(@"%@", self.comments);
             [self.tableView reloadData];
-        }
-        else {
-            // handle error
         }
     }];
 }
@@ -92,7 +89,7 @@
     }];
     
 }
-
+#pragma mark - TableView
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     Comment *comment = self.comments[indexPath.row];
     CommentCell *commentCell = [ tableView dequeueReusableCellWithIdentifier:@"CommentCell" ];
@@ -109,15 +106,12 @@
 
 
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     UserViewController *userViewController = [segue destinationViewController];
-     userViewController.user = self.user;
- }
- 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UserViewController *userViewController = [segue destinationViewController];
+    userViewController.user = self.user;
+}
+
 
 @end

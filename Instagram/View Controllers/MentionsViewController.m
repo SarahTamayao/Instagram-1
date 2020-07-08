@@ -23,10 +23,8 @@
     self.tableView.dataSource = self;
     self.mentions = [[NSMutableArray alloc] init];
     [self getMentions];
-    
-    
-    // Do any additional setup after loading the view.
 }
+#pragma mark - Network
 - (void)getMentions {
         PFQuery *postQuery = [Post query];
         [postQuery orderByDescending:@"createdAt"];
@@ -58,23 +56,9 @@
                     }];
                 }
             }
-            else {
-            }
-            
         }];
-    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+#pragma mark - TableView
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     Mention *mention = self.mentions[indexPath.row];
     NSLog(@"Username to mention: %@", mention.user.username);
@@ -87,5 +71,16 @@
     NSLog(@"Table View Rows %d", self.interactions);
     return self.interactions;
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 
 @end

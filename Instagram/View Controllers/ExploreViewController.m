@@ -30,13 +30,8 @@
     CGFloat itemHeight = itemWidth * 0.9;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     [self fecthPost];
-    // Do any additional setup after loading the view.
 }
-- (void)profileCell:(ProfileCell *)profileCell didTap:(Post *)post{
-    self.post = post;
-    NSLog(@"Hello");
-    [self performSegueWithIdentifier:@"detailsSegue" sender:nil];
-}
+#pragma mark - Network
 - (void)fecthPost {
     PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
     PFQuery *query = [relation query];
@@ -56,20 +51,16 @@
                     self.posts = [posts mutableCopy];
                     [self.collectionView reloadData];
                 }
-                else {
-                    // handle error
-                }
             }];
-            
-        }
-        else {
-            // handle error
         }
     }];
 }
+
+#pragma mark - CollectionView
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     ProfileCell *profileCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfileCell" forIndexPath: indexPath];
@@ -79,14 +70,13 @@
     return profileCell;
 }
 
-
+- (void)profileCell:(ProfileCell *)profileCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"detailsSegue" sender:nil];
+}
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     CommentsViewController *commentsViewController = [segue destinationViewController];
     commentsViewController.post = self.post;
 }
