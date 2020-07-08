@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property int followerCount;
 
 @end
 
@@ -42,6 +42,41 @@
     self.photoImageView.file = user[@"profilePic"];
     self.photoImageView.layer.cornerRadius = 48;
     self.photoImageView.layer.masksToBounds = YES;
+    PFQuery *queryUsers = [PFUser query];
+    queryUsers.limit = 20;
+    [queryUsers findObjectsInBackgroundWithBlock:^(NSArray* users, NSError * _Nullable error) {
+        NSLog(@"HereWeAre");
+        NSLog(@"%@", users);
+        for(PFUser *user in users)
+        {
+            NSLog(@"HereWeAreAGAAAIN");
+            NSLog(@"%@", user);
+            PFRelation *relation = [user relationForKey:@"Following"];
+            PFQuery *query = [relation query];
+            query.limit = 20;
+            [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+                PFUser *currentUser = [PFUser currentUser];
+                       for(PFUser *user in following)
+                       {
+                           if([user.username isEqual:(currentUser.username)]){
+                               NSLog(@"yessir");
+                               self.followerCount += 1;
+                           }
+                       }
+                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
+               }];
+            
+        }
+        NSLog(@"%d", self.followerCount);
+
+    }];
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+            self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
+    }];
     [self.photoImageView loadInBackground];
     [self fecthPost];
     // Do any additional setup after loading the view.
@@ -60,7 +95,7 @@
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            NSLog(@"%@", posts);
+            //NSLog(@"%@", posts);
             self.posts = [posts mutableCopy];
             self.postLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.posts.count];
             [self.collectionView reloadData];

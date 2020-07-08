@@ -19,7 +19,15 @@
 		98596BD024B1ADB9009C84CE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98596BCF24B1ADB9009C84CE /* LoginViewController.m */; };
 		98596BD524B1B108009C84CE /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98596BD424B1B0D3009C84CE /* Billabong.ttf */; };
 		98596BD824B1BE8C009C84CE /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98596BD724B1BE8C009C84CE /* FeedViewController.m */; };
+		986B144B24B62BEC0012F68D /* StoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B144A24B62BEC0012F68D /* StoryCell.m */; };
+		986B144E24B65D630012F68D /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B144D24B65D630012F68D /* ExploreViewController.m */; };
+		986B145124B677780012F68D /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145024B677780012F68D /* MentionsViewController.m */; };
+		986B145424B678810012F68D /* MentionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145324B678810012F68D /* MentionsCell.m */; };
+		986B145724B679BB0012F68D /* Mention.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145624B679BB0012F68D /* Mention.m */; };
 		9875138424B53B9300F95325 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138324B53B9300F95325 /* ProfileCell.m */; };
+		9875138A24B5403800F95325 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138924B5403800F95325 /* StoriesViewController.m */; };
+		9875138D24B5415500F95325 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138C24B5415500F95325 /* StoryViewController.m */; };
+		9875139024B5435F00F95325 /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138F24B5435E00F95325 /* Stories.m */; };
 		9888FBA624B39475005A9D86 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9888FBA524B39475005A9D86 /* PostCell.m */; };
 		98A8428C24B22D9C007F87F1 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8428B24B22D9C007F87F1 /* ComposeViewController.m */; };
 		98A8429224B24B65007F87F1 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8429124B24B65007F87F1 /* EditViewController.m */; };
@@ -79,7 +87,23 @@
 		98596BD424B1B0D3009C84CE /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Billabong.ttf; sourceTree = "<group>"; };
 		98596BD624B1BE8C009C84CE /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		98596BD724B1BE8C009C84CE /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		986B144924B62BEC0012F68D /* StoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryCell.h; sourceTree = "<group>"; };
+		986B144A24B62BEC0012F68D /* StoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryCell.m; sourceTree = "<group>"; };
+		986B144C24B65D630012F68D /* ExploreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
+		986B144D24B65D630012F68D /* ExploreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		986B144F24B677780012F68D /* MentionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MentionsViewController.h; sourceTree = "<group>"; };
+		986B145024B677780012F68D /* MentionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentionsViewController.m; sourceTree = "<group>"; };
+		986B145224B678810012F68D /* MentionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MentionsCell.h; sourceTree = "<group>"; };
+		986B145324B678810012F68D /* MentionsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentionsCell.m; sourceTree = "<group>"; };
+		986B145524B679BB0012F68D /* Mention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mention.h; sourceTree = "<group>"; };
+		986B145624B679BB0012F68D /* Mention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mention.m; sourceTree = "<group>"; };
 		9875138324B53B9300F95325 /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		9875138824B5403800F95325 /* StoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoriesViewController.h; sourceTree = "<group>"; };
+		9875138924B5403800F95325 /* StoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
+		9875138B24B5415500F95325 /* StoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
+		9875138C24B5415500F95325 /* StoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
+		9875138E24B5435E00F95325 /* Stories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stories.h; path = "../../../Instagram copy 2/Instagram/Models/Stories.h"; sourceTree = "<group>"; };
+		9875138F24B5435E00F95325 /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stories.m; path = "../../../Instagram copy 2/Instagram/Models/Stories.m"; sourceTree = "<group>"; };
 		9888FBA424B39475005A9D86 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		9888FBA524B39475005A9D86 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		98A8428A24B22D9C007F87F1 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
@@ -230,6 +254,10 @@
 				98E9951924B4E36A0026BCD0 /* CommentCell.m */,
 				98E9951B24B4FD470026BCD0 /* ProfileCell.h */,
 				9875138324B53B9300F95325 /* ProfileCell.m */,
+				986B144924B62BEC0012F68D /* StoryCell.h */,
+				986B144A24B62BEC0012F68D /* StoryCell.m */,
+				986B145224B678810012F68D /* MentionsCell.h */,
+				986B145324B678810012F68D /* MentionsCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,17 +265,30 @@
 		98A8428924B22D85007F87F1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				98E9951E24B527CE0026BCD0 /* Camera View Controllers */,
+				9875138824B5403800F95325 /* StoriesViewController.h */,
+				9875138924B5403800F95325 /* StoriesViewController.m */,
+				9875138B24B5415500F95325 /* StoryViewController.h */,
+				9875138C24B5415500F95325 /* StoryViewController.m */,
+				98E9950C24B3DD480026BCD0 /* ProfileViewController.h */,
+				98E9950D24B3DD480026BCD0 /* ProfileViewController.m */,
+				98E9951F24B527F80026BCD0 /* UserViewController.h */,
+				98E9952024B527F80026BCD0 /* UserViewController.m */,
+				98A8428A24B22D9C007F87F1 /* ComposeViewController.h */,
+				98A8428B24B22D9C007F87F1 /* ComposeViewController.m */,
+				98A8429024B24B65007F87F1 /* EditViewController.h */,
+				98A8429124B24B65007F87F1 /* EditViewController.m */,
+				98A8429324B25B95007F87F1 /* FinalComposeViewController.h */,
+				98A8429424B25B95007F87F1 /* FinalComposeViewController.m */,
 				98596BCE24B1ADB9009C84CE /* LoginViewController.h */,
 				98596BCF24B1ADB9009C84CE /* LoginViewController.m */,
 				98596BD624B1BE8C009C84CE /* FeedViewController.h */,
 				98596BD724B1BE8C009C84CE /* FeedViewController.m */,
-				98E9950C24B3DD480026BCD0 /* ProfileViewController.h */,
-				98E9950D24B3DD480026BCD0 /* ProfileViewController.m */,
 				98E9951524B4DF4E0026BCD0 /* CommentsViewController.h */,
 				98E9951624B4DF4E0026BCD0 /* CommentsViewController.m */,
-				98E9951F24B527F80026BCD0 /* UserViewController.h */,
-				98E9952024B527F80026BCD0 /* UserViewController.m */,
+				986B144C24B65D630012F68D /* ExploreViewController.h */,
+				986B144D24B65D630012F68D /* ExploreViewController.m */,
+				986B144F24B677780012F68D /* MentionsViewController.h */,
+				986B145024B677780012F68D /* MentionsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -255,27 +296,18 @@
 		98A8429924B25D3C007F87F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9875138E24B5435E00F95325 /* Stories.h */,
+				9875138F24B5435E00F95325 /* Stories.m */,
 				98A8429624B25CCD007F87F1 /* Post.h */,
 				98A8429724B25CCD007F87F1 /* Post.m */,
 				98E9950924B3D1130026BCD0 /* Comment.h */,
 				98E9950A24B3D1130026BCD0 /* Comment.m */,
 				98E9951224B3E0750026BCD0 /* User.h */,
 				98E9951324B3E0750026BCD0 /* User.m */,
+				986B145524B679BB0012F68D /* Mention.h */,
+				986B145624B679BB0012F68D /* Mention.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		98E9951E24B527CE0026BCD0 /* Camera View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				98A8428A24B22D9C007F87F1 /* ComposeViewController.h */,
-				98A8428B24B22D9C007F87F1 /* ComposeViewController.m */,
-				98A8429024B24B65007F87F1 /* EditViewController.h */,
-				98A8429124B24B65007F87F1 /* EditViewController.m */,
-				98A8429324B25B95007F87F1 /* FinalComposeViewController.h */,
-				98A8429424B25B95007F87F1 /* FinalComposeViewController.m */,
-			);
-			path = "Camera View Controllers";
 			sourceTree = "<group>";
 		};
 		F2EB4FF89F9DE507714DF187 /* Frameworks */ = {
@@ -529,7 +561,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				98E9951424B3E0750026BCD0 /* User.m in Sources */,
+				986B145724B679BB0012F68D /* Mention.m in Sources */,
+				9875139024B5435F00F95325 /* Stories.m in Sources */,
 				9875138424B53B9300F95325 /* ProfileCell.m in Sources */,
+				9875138D24B5415500F95325 /* StoryViewController.m in Sources */,
 				98596BD024B1ADB9009C84CE /* LoginViewController.m in Sources */,
 				98E9950324B3CA720026BCD0 /* HeaderView.m in Sources */,
 				98596BD824B1BE8C009C84CE /* FeedViewController.m in Sources */,
@@ -538,12 +573,17 @@
 				98E9952124B527F80026BCD0 /* UserViewController.m in Sources */,
 				98A8429524B25B95007F87F1 /* FinalComposeViewController.m in Sources */,
 				98A8428C24B22D9C007F87F1 /* ComposeViewController.m in Sources */,
+				986B145124B677780012F68D /* MentionsViewController.m in Sources */,
+				9875138A24B5403800F95325 /* StoriesViewController.m in Sources */,
+				986B145424B678810012F68D /* MentionsCell.m in Sources */,
 				9888FBA624B39475005A9D86 /* PostCell.m in Sources */,
 				98A8429224B24B65007F87F1 /* EditViewController.m in Sources */,
 				98596BAC24B1A752009C84CE /* main.m in Sources */,
 				98E9950E24B3DD480026BCD0 /* ProfileViewController.m in Sources */,
+				986B144B24B62BEC0012F68D /* StoryCell.m in Sources */,
 				98E9951724B4DF4E0026BCD0 /* CommentsViewController.m in Sources */,
 				98E9951A24B4E36A0026BCD0 /* CommentCell.m in Sources */,
+				986B144E24B65D630012F68D /* ExploreViewController.m in Sources */,
 				98A8429824B25CCD007F87F1 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

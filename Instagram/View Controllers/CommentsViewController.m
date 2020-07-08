@@ -10,6 +10,7 @@
 #import "Comment.h"
 #import "CommentCell.h"
 #import "DateTools.h"
+#import "UserViewController.h"
 @import Parse;
 
 
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (strong, nonatomic) NSMutableArray *comments;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-
+@property (strong, nonatomic) PFUser *user;
 @end
 
 @implementation CommentsViewController
@@ -34,6 +35,7 @@
     [self.postView loadInBackground];
     PFUser *user = self.post[@"author"];
     self.usernameLabel.text = user.username;
+    self.user = user;
     self.captionLabel.text = self.post[@"caption"];
     self.commentField.delegate = self;
     [self fetchComments];
@@ -41,6 +43,9 @@
     NSLog(@"%@", date);
     NSDate *timeAgo = [NSDate dateWithTimeInterval:0 sinceDate:date];
     self.dateLabel.text = timeAgo.timeAgoSinceNow;
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+       [self.usernameLabel addGestureRecognizer:profileTapGestureRecognizer];
+       [self.usernameLabel setUserInteractionEnabled:YES];
     
 }
 
@@ -98,16 +103,21 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.comments.count;
 }
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+    [self performSegueWithIdentifier:@"profileSegue" sender:nil];
+}
 
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     UserViewController *userViewController = [segue destinationViewController];
+     userViewController.user = self.user;
  }
- */
+ 
 
 @end

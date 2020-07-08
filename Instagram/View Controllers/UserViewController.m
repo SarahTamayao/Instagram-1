@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
+@property int followerCount;
 
 @end
 
@@ -37,12 +39,51 @@
     
     self.navigationItem.title = self.user[@"username"];
     [self.navigationController.navigationBar setTitleTextAttributes:
-    @{NSForegroundColorAttributeName:[UIColor blackColor],
-      NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:17]}];
+     @{NSForegroundColorAttributeName:[UIColor blackColor],
+       NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:17]}];
     self.usernameLabel.text = self.user[@"username"];
     self.photoImageView.file = self.user[@"profilePic"];
     self.photoImageView.layer.cornerRadius = 48;
     self.photoImageView.layer.masksToBounds = YES;
+    PFQuery *queryUsers = [PFUser query];
+    queryUsers.limit = 20;
+    [queryUsers findObjectsInBackgroundWithBlock:^(NSArray* users, NSError * _Nullable error) {
+        NSLog(@"HereWeAre");
+        NSLog(@"%@", users);
+        for(PFUser *user in users)
+        {
+            NSLog(@"HereWeAreAGAAAIN");
+            NSLog(@"%@", user);
+            PFRelation *relation = [user relationForKey:@"Following"];
+            PFQuery *query = [relation query];
+            query.limit = 20;
+            BOOL isItMe = NO;
+            if([user.username isEqual:([PFUser currentUser].username)]){
+                isItMe = YES;
+            }
+            [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+                for(PFUser *user in following){
+                           if([user.username isEqual:(self.user.username)]){
+                               if(isItMe){
+                                   self.followButton.titleLabel.text = @"Unfollow";
+                               }
+                               NSLog(@"yessir");
+                               self.followerCount += 1;
+                           }
+                    }
+                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
+               }];
+        }
+        NSLog(@"%d", self.followerCount);
+
+    }];
+    PFRelation *relation = [self.user relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+            self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
+    }];
     [self.photoImageView loadInBackground];
     [self fecthPost];
     // Do any additional setup after loading the view.
@@ -71,7 +112,7 @@
     }];
 }
 
- - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -83,17 +124,74 @@
     return profileCell;
 }
 - (IBAction)onFollow:(id)sender{
-    User *currenUser = [PFUser currentUser];
-    PFRelation *relation = [currenUser relationForKey:@"Following"];
-    [relation addObject:self.user];
-    [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
-            NSLog(@"Following %@", self.user.username);
-        }else{
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", following);
+            if(following.count >0){
+                for(PFUser *user in following)
+                {
+                    NSLog(@"%@", user);
+                    if([user[@"username"] isEqual:self.user.username]){
+                        User *currenUser = [PFUser currentUser];
+                        PFRelation *relation = [currenUser relationForKey:@"Following"];
+                        [relation removeObject:self.user];
+                        [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                            if(succeeded){
+                                NSLog(@"Unfollowing %@", self.user.username);
+                                 self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount-1];
+                                self.followerCount -=1;
+                                self.followButton.titleLabel.text = @"Follow";
+                                //[self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
+                            }else{
+                            }
+                        }];
+                    }else{
+                        User *currenUser = [PFUser currentUser];
+                        PFRelation *relation = [currenUser relationForKey:@"Following"];
+                        [relation addObject:self.user];
+                        [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                            if(succeeded){
+                                NSLog(@"Following %@", self.user.username);
+                                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount+1];
+                                self.followerCount +=1;
+                                self.followButton.titleLabel.text = @"Unfollow";
+                                //[self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
+                            }else{
+                                
+                            }
+                        }];
+                    }
+                }
+            }else{
+                
+                User *currenUser = [PFUser currentUser];
+                PFRelation *relation = [currenUser relationForKey:@"Following"];
+                [relation addObject:self.user];
+                [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if(succeeded){
+                        NSLog(@"Following %@", self.user.username);
+                        self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount+1];
+                        self.followerCount +=1;
+                        self.followButton.titleLabel.text = @"Unfollow";
+                        //[self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
+                    }else{
+                        
+                    }
+                }];
+            }
             
         }
+        else {
+        }
     }];
+    
+    
 }
+
 
 
 

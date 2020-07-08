@@ -15,11 +15,17 @@
 #import "HeaderView.h"
 #import "CommentsViewController.h"
 #import "UserViewController.h"
-@interface FeedViewController () < UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, PostCellDelegate>
+#import "Stories.h"
+#import "StoriesViewController.h"
+#import "StoryCell.h"
+@interface FeedViewController () < UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, PostCellDelegate, StoryCellDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *posts;
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSArray *stories;
+@property  (nonatomic, strong) NSNumber *startIndex;
 
 @end
 
@@ -35,7 +41,10 @@
        NSFontAttributeName:[UIFont fontWithName:@"Billabong" size:32]}];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     [self fecthPost];
+    [self fetchStories];
     [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
     [self.tableView registerNib:[UINib nibWithNibName:@"HeaderView" bundle:nil]  forHeaderFooterViewReuseIdentifier:@"HeaderView"];
     //[self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:HeaderViewIdentifier];
@@ -43,18 +52,46 @@
 }
 - (void)onTimer {
     [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
+ - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.stories.count;
+}
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    StoryCell *storyCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"StoryCell" forIndexPath: indexPath];
+    Stories *story = self.stories[indexPath.item];
+    storyCell.startIndex = [NSNumber numberWithInt:(indexPath.item)];
+    [storyCell loadStory:story];
+    storyCell.delegate = self;
+    return storyCell;
+}
+
 - (void)fecthPost {
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            NSLog(@"%@", posts);
-            self.posts = [posts mutableCopy];
-            self.dataSkip = 20;
-            [self.tableView reloadData];
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable following, NSError * _Nullable error) {
+        if (following) {
+            NSLog(@"%@", following);
+            PFQuery *postQuery = [Post query];
+            [postQuery orderByDescending:@"createdAt"];
+            [postQuery whereKey:@"author" containedIn:following];
+            [postQuery includeKey:@"author"];
+            postQuery.limit = 20;
+            [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+                if (posts) {
+                    NSLog(@"%@", posts);
+                    self.posts = [posts mutableCopy];
+                    self.dataSkip = 20;
+                    [self.tableView reloadData];
+                }
+                else {
+                    // handle error
+                }
+            }];
+            
         }
         else {
             // handle error
@@ -148,7 +185,38 @@
         // PFUser.current() will now be nil
     }];
 }
+- (IBAction)onStory:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
 
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    // Get the image captured by the UIImagePickerController
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+
+    
+    [Stories postUserStories:editedImage withCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"POSTED");
+        } else {
+            //NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+     
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)storyCell:(StoryCell *)storyCell didTap:(Stories *)story withIndex:(NSNumber*)index{
+    self.startIndex = index;
+    [self performSegueWithIdentifier:@"storiesSegue" sender:nil];
+}
 - (void)postCell:(PostCell *)postCell didTap:(Post *)post{
     self.post = post;
     [self performSegueWithIdentifier:@"commentsSegue" sender:nil];
@@ -240,10 +308,31 @@
     {
         UserViewController *userViewController = [segue destinationViewController];
         userViewController.user = self.user;
+    }else if ([segue.identifier isEqual:@"storiesSegue"])
+    {
+        StoriesViewController *storiesViewController = [segue destinationViewController];
+        storiesViewController.index = self.startIndex;
+        storiesViewController.stories = self.stories;
     }else{
         CommentsViewController *commentsViewController = [segue destinationViewController];
         commentsViewController.post = self.post;
     }
+}
+- (void)fetchStories {
+    PFQuery *storyQuery = [Stories query];
+    [storyQuery orderByDescending:@"createdAt"];
+    [storyQuery includeKey:@"author"];
+    storyQuery.limit = 20;
+    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray<Stories *> * _Nullable stories, NSError * _Nullable error) {
+        if (stories) {
+            NSLog(@"%@", stories);
+            self.stories = stories;
+            [self.collectionView reloadData];
+        }
+        else {
+            // handle error
+        }
+    }];
 }
 
 @end
