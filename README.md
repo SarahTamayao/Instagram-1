@@ -42,7 +42,7 @@ The following **additional** features are implemented:
 - [x] User can follow and unfollow others, and only posts from followed users will display in the home tab
 - [x] User can access a explore page with a global feed to find more users to follow
 - [x] User can access a mentions page that displays likes on their postws from other users
-- [] User can send and receive direct messages
+- [x] User can send and receive direct messages
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
