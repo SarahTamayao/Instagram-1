@@ -313,9 +313,12 @@
         StoriesViewController *storiesViewController = [segue destinationViewController];
         storiesViewController.index = self.startIndex;
         storiesViewController.stories = self.stories;
-    }else{
+    }
+    else if ([segue.identifier isEqual:@"commentsSegue"])
+    {
         CommentsViewController *commentsViewController = [segue destinationViewController];
         commentsViewController.post = self.post;
+    }else{
     }
 }
 - (void)fetchStories {

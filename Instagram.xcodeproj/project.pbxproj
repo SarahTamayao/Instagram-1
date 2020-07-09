@@ -24,6 +24,11 @@
 		986B145124B677780012F68D /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145024B677780012F68D /* MentionsViewController.m */; };
 		986B145424B678810012F68D /* MentionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145324B678810012F68D /* MentionsCell.m */; };
 		986B145724B679BB0012F68D /* Mention.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145624B679BB0012F68D /* Mention.m */; };
+		986B145A24B777D30012F68D /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145924B777D30012F68D /* MessagesViewController.m */; };
+		986B145D24B777F90012F68D /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145C24B777F90012F68D /* MessageThreadViewController.m */; };
+		986B146024B779420012F68D /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145F24B779420012F68D /* Message.m */; };
+		986B146324B77B830012F68D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B146224B77B830012F68D /* MessageCell.m */; };
+		986B146624B77D820012F68D /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B146524B77D820012F68D /* UserCell.m */; };
 		9875138424B53B9300F95325 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138324B53B9300F95325 /* ProfileCell.m */; };
 		9875138A24B5403800F95325 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138924B5403800F95325 /* StoriesViewController.m */; };
 		9875138D24B5415500F95325 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138C24B5415500F95325 /* StoryViewController.m */; };
@@ -97,6 +102,16 @@
 		986B145324B678810012F68D /* MentionsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentionsCell.m; sourceTree = "<group>"; };
 		986B145524B679BB0012F68D /* Mention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mention.h; sourceTree = "<group>"; };
 		986B145624B679BB0012F68D /* Mention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mention.m; sourceTree = "<group>"; };
+		986B145824B777D30012F68D /* MessagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		986B145924B777D30012F68D /* MessagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
+		986B145B24B777F90012F68D /* MessageThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageThreadViewController.h; sourceTree = "<group>"; };
+		986B145C24B777F90012F68D /* MessageThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageThreadViewController.m; sourceTree = "<group>"; };
+		986B145E24B779420012F68D /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		986B145F24B779420012F68D /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		986B146124B77B830012F68D /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		986B146224B77B830012F68D /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		986B146424B77D820012F68D /* UserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		986B146524B77D820012F68D /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		9875138324B53B9300F95325 /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		9875138824B5403800F95325 /* StoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoriesViewController.h; sourceTree = "<group>"; };
 		9875138924B5403800F95325 /* StoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
@@ -258,6 +273,10 @@
 				986B144A24B62BEC0012F68D /* StoryCell.m */,
 				986B145224B678810012F68D /* MentionsCell.h */,
 				986B145324B678810012F68D /* MentionsCell.m */,
+				986B146124B77B830012F68D /* MessageCell.h */,
+				986B146224B77B830012F68D /* MessageCell.m */,
+				986B146524B77D820012F68D /* UserCell.m */,
+				986B146424B77D820012F68D /* UserCell.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +308,10 @@
 				986B144D24B65D630012F68D /* ExploreViewController.m */,
 				986B144F24B677780012F68D /* MentionsViewController.h */,
 				986B145024B677780012F68D /* MentionsViewController.m */,
+				986B145824B777D30012F68D /* MessagesViewController.h */,
+				986B145924B777D30012F68D /* MessagesViewController.m */,
+				986B145B24B777F90012F68D /* MessageThreadViewController.h */,
+				986B145C24B777F90012F68D /* MessageThreadViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -306,6 +329,8 @@
 				98E9951324B3E0750026BCD0 /* User.m */,
 				986B145524B679BB0012F68D /* Mention.h */,
 				986B145624B679BB0012F68D /* Mention.m */,
+				986B145E24B779420012F68D /* Message.h */,
+				986B145F24B779420012F68D /* Message.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -573,8 +598,11 @@
 				98E9952124B527F80026BCD0 /* UserViewController.m in Sources */,
 				98A8429524B25B95007F87F1 /* FinalComposeViewController.m in Sources */,
 				98A8428C24B22D9C007F87F1 /* ComposeViewController.m in Sources */,
+				986B145D24B777F90012F68D /* MessageThreadViewController.m in Sources */,
 				986B145124B677780012F68D /* MentionsViewController.m in Sources */,
+				986B145A24B777D30012F68D /* MessagesViewController.m in Sources */,
 				9875138A24B5403800F95325 /* StoriesViewController.m in Sources */,
+				986B146024B779420012F68D /* Message.m in Sources */,
 				986B145424B678810012F68D /* MentionsCell.m in Sources */,
 				9888FBA624B39475005A9D86 /* PostCell.m in Sources */,
 				98A8429224B24B65007F87F1 /* EditViewController.m in Sources */,
@@ -585,6 +613,8 @@
 				98E9951A24B4E36A0026BCD0 /* CommentCell.m in Sources */,
 				986B144E24B65D630012F68D /* ExploreViewController.m in Sources */,
 				98A8429824B25CCD007F87F1 /* Post.m in Sources */,
+				986B146624B77D820012F68D /* UserCell.m in Sources */,
+				986B146324B77B830012F68D /* MessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

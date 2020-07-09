@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface StoryViewController : UIViewController
 @property (weak, nonatomic) IBOutlet PFImageView *storyView;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property NSUInteger index;
 @property (nonatomic, strong) Stories *story;
 

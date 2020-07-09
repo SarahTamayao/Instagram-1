@@ -138,8 +138,8 @@
                         [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                             if(succeeded){
                                 NSLog(@"Unfollowing %@", self.user.username);
-                                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount-1];
-                                self.followerCount -=1;
+                                self.followerCount -=2;
+                                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
                                 self.followButton.titleLabel.text = @"Follow";
                             }
                         }];
@@ -150,8 +150,8 @@
                         [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                             if(succeeded){
                                 NSLog(@"Following %@", self.user.username);
-                                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount+1];
                                 self.followerCount +=1;
+                                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
                                 self.followButton.titleLabel.text = @"Unfollow";
                             }
                         }];
@@ -164,8 +164,8 @@
                 [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                     if(succeeded){
                         NSLog(@"Following %@", self.user.username);
-                        self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount+1];
                         self.followerCount +=1;
+                        self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
                         self.followButton.titleLabel.text = @"Unfollow";
                     }
                 }];

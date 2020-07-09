@@ -21,6 +21,8 @@
     [super viewDidLoad];
     self.storyView.file = self.story[@"image"];
     [self.storyView loadInBackground];
+    PFUser *user = self.story[@"author"];
+    self.userLabel.text = user.username;
     self.storyView.userInteractionEnabled = YES;
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(onSwipe:)];
     swipeGesture.direction = UISwipeGestureRecognizerDirectionDown;

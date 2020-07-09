@@ -39,6 +39,7 @@
     self.navigationItem.title = user[@"username"];
     self.usernameLabel.text = user[@"username"];
     self.photoImageView.file = user[@"profilePic"];
+    [self.photoImageView loadInBackground];
     self.photoImageView.layer.cornerRadius = 48;
     self.photoImageView.layer.masksToBounds = YES;
     PFQuery *queryUsers = [PFUser query];
@@ -76,7 +77,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
             self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
     }];
-    [self.photoImageView loadInBackground];
     [self fecthPost];
 }
 
