@@ -22,6 +22,7 @@
     [super viewDidLoad];
     self.passwordField.secureTextEntry = true;
 }
+ #pragma mark - Outlets
 - (IBAction)onTapSignUp:(id)sender {
     [self registerUser];
 }

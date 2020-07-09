@@ -32,7 +32,6 @@
 		9875138424B53B9300F95325 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138324B53B9300F95325 /* ProfileCell.m */; };
 		9875138A24B5403800F95325 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138924B5403800F95325 /* StoriesViewController.m */; };
 		9875138D24B5415500F95325 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138C24B5415500F95325 /* StoryViewController.m */; };
-		9875139024B5435F00F95325 /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138F24B5435E00F95325 /* Stories.m */; };
 		9888FBA624B39475005A9D86 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9888FBA524B39475005A9D86 /* PostCell.m */; };
 		98A8428C24B22D9C007F87F1 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8428B24B22D9C007F87F1 /* ComposeViewController.m */; };
 		98A8429224B24B65007F87F1 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A8429124B24B65007F87F1 /* EditViewController.m */; };
@@ -112,13 +111,13 @@
 		986B146224B77B830012F68D /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		986B146424B77D820012F68D /* UserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		986B146524B77D820012F68D /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		986B147124B7C0F20012F68D /* Stories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stories.h; sourceTree = "<group>"; };
+		986B147224B7C0F30012F68D /* Stories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
 		9875138324B53B9300F95325 /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		9875138824B5403800F95325 /* StoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoriesViewController.h; sourceTree = "<group>"; };
 		9875138924B5403800F95325 /* StoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
 		9875138B24B5415500F95325 /* StoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		9875138C24B5415500F95325 /* StoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
-		9875138E24B5435E00F95325 /* Stories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stories.h; path = "../../../Instagram copy 2/Instagram/Models/Stories.h"; sourceTree = "<group>"; };
-		9875138F24B5435E00F95325 /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stories.m; path = "../../../Instagram copy 2/Instagram/Models/Stories.m"; sourceTree = "<group>"; };
 		9888FBA424B39475005A9D86 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		9888FBA524B39475005A9D86 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		98A8428A24B22D9C007F87F1 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
@@ -216,8 +215,6 @@
 		98596B9824B1A751009C84CE /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				9888FBA324B39466005A9D86 /* Views */,
-				98A8429924B25D3C007F87F1 /* Models */,
 				98A8428924B22D85007F87F1 /* View Controllers */,
 				98596BD324B1B0CE009C84CE /* fonts */,
 				98596B9924B1A751009C84CE /* AppDelegate.h */,
@@ -257,7 +254,139 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		9888FBA324B39466005A9D86 /* Views */ = {
+		986B146924B7C00F0012F68D /* CameraViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				98A8428A24B22D9C007F87F1 /* ComposeViewController.h */,
+				98A8428B24B22D9C007F87F1 /* ComposeViewController.m */,
+				98A8429024B24B65007F87F1 /* EditViewController.h */,
+				98A8429124B24B65007F87F1 /* EditViewController.m */,
+				98A8429324B25B95007F87F1 /* FinalComposeViewController.h */,
+				98A8429424B25B95007F87F1 /* FinalComposeViewController.m */,
+			);
+			path = CameraViewControllers;
+			sourceTree = "<group>";
+		};
+		986B146A24B7C02F0012F68D /* StoriesViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				986B147024B7C0DB0012F68D /* Views */,
+				986B146F24B7C0D40012F68D /* Models */,
+				9875138824B5403800F95325 /* StoriesViewController.h */,
+				9875138924B5403800F95325 /* StoriesViewController.m */,
+				9875138B24B5415500F95325 /* StoryViewController.h */,
+				9875138C24B5415500F95325 /* StoryViewController.m */,
+			);
+			path = StoriesViewControllers;
+			sourceTree = "<group>";
+		};
+		986B146B24B7C0520012F68D /* UserProfileViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				986B147A24B7C1BA0012F68D /* Views */,
+				986B147924B7C1B50012F68D /* Models */,
+				98E9950C24B3DD480026BCD0 /* ProfileViewController.h */,
+				98E9950D24B3DD480026BCD0 /* ProfileViewController.m */,
+				98E9951F24B527F80026BCD0 /* UserViewController.h */,
+				98E9952024B527F80026BCD0 /* UserViewController.m */,
+			);
+			path = UserProfileViewControllers;
+			sourceTree = "<group>";
+		};
+		986B146C24B7C0940012F68D /* FeedViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				986B147824B7C15E0012F68D /* Models */,
+				986B147724B7C1590012F68D /* Views */,
+				98596BD624B1BE8C009C84CE /* FeedViewController.h */,
+				98596BD724B1BE8C009C84CE /* FeedViewController.m */,
+				98E9951524B4DF4E0026BCD0 /* CommentsViewController.h */,
+				98E9951624B4DF4E0026BCD0 /* CommentsViewController.m */,
+			);
+			path = FeedViewControllers;
+			sourceTree = "<group>";
+		};
+		986B146D24B7C0AA0012F68D /* MessagesViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				986B147624B7C13D0012F68D /* Views */,
+				986B147524B7C1380012F68D /* Models */,
+				986B145824B777D30012F68D /* MessagesViewController.h */,
+				986B145924B777D30012F68D /* MessagesViewController.m */,
+				986B145B24B777F90012F68D /* MessageThreadViewController.h */,
+				986B145C24B777F90012F68D /* MessageThreadViewController.m */,
+			);
+			path = MessagesViewControllers;
+			sourceTree = "<group>";
+		};
+		986B146E24B7C0BC0012F68D /* AdditionalViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				986B147424B7C10E0012F68D /* Models */,
+				986B147324B7C1010012F68D /* Views */,
+				986B144C24B65D630012F68D /* ExploreViewController.h */,
+				986B144D24B65D630012F68D /* ExploreViewController.m */,
+				986B144F24B677780012F68D /* MentionsViewController.h */,
+				986B145024B677780012F68D /* MentionsViewController.m */,
+			);
+			path = AdditionalViewControllers;
+			sourceTree = "<group>";
+		};
+		986B146F24B7C0D40012F68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				986B147124B7C0F20012F68D /* Stories.h */,
+				986B147224B7C0F30012F68D /* Stories.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		986B147024B7C0DB0012F68D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				986B144924B62BEC0012F68D /* StoryCell.h */,
+				986B144A24B62BEC0012F68D /* StoryCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		986B147324B7C1010012F68D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				986B145224B678810012F68D /* MentionsCell.h */,
+				986B145324B678810012F68D /* MentionsCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		986B147424B7C10E0012F68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				986B145524B679BB0012F68D /* Mention.h */,
+				986B145624B679BB0012F68D /* Mention.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		986B147524B7C1380012F68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				986B145E24B779420012F68D /* Message.h */,
+				986B145F24B779420012F68D /* Message.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		986B147624B7C13D0012F68D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				986B146124B77B830012F68D /* MessageCell.h */,
+				986B146224B77B830012F68D /* MessageCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		986B147724B7C1590012F68D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				9888FBA424B39475005A9D86 /* PostCell.h */,
@@ -267,14 +396,35 @@
 				98E9950424B3CA820026BCD0 /* HeaderView.xib */,
 				98E9951824B4E36A0026BCD0 /* CommentCell.h */,
 				98E9951924B4E36A0026BCD0 /* CommentCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		986B147824B7C15E0012F68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				98A8429624B25CCD007F87F1 /* Post.h */,
+				98A8429724B25CCD007F87F1 /* Post.m */,
+				98E9950924B3D1130026BCD0 /* Comment.h */,
+				98E9950A24B3D1130026BCD0 /* Comment.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		986B147924B7C1B50012F68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				98E9951224B3E0750026BCD0 /* User.h */,
+				98E9951324B3E0750026BCD0 /* User.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		986B147A24B7C1BA0012F68D /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				98E9951B24B4FD470026BCD0 /* ProfileCell.h */,
 				9875138324B53B9300F95325 /* ProfileCell.m */,
-				986B144924B62BEC0012F68D /* StoryCell.h */,
-				986B144A24B62BEC0012F68D /* StoryCell.m */,
-				986B145224B678810012F68D /* MentionsCell.h */,
-				986B145324B678810012F68D /* MentionsCell.m */,
-				986B146124B77B830012F68D /* MessageCell.h */,
-				986B146224B77B830012F68D /* MessageCell.m */,
 				986B146524B77D820012F68D /* UserCell.m */,
 				986B146424B77D820012F68D /* UserCell.h */,
 			);
@@ -284,55 +434,16 @@
 		98A8428924B22D85007F87F1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9875138824B5403800F95325 /* StoriesViewController.h */,
-				9875138924B5403800F95325 /* StoriesViewController.m */,
-				9875138B24B5415500F95325 /* StoryViewController.h */,
-				9875138C24B5415500F95325 /* StoryViewController.m */,
-				98E9950C24B3DD480026BCD0 /* ProfileViewController.h */,
-				98E9950D24B3DD480026BCD0 /* ProfileViewController.m */,
-				98E9951F24B527F80026BCD0 /* UserViewController.h */,
-				98E9952024B527F80026BCD0 /* UserViewController.m */,
-				98A8428A24B22D9C007F87F1 /* ComposeViewController.h */,
-				98A8428B24B22D9C007F87F1 /* ComposeViewController.m */,
-				98A8429024B24B65007F87F1 /* EditViewController.h */,
-				98A8429124B24B65007F87F1 /* EditViewController.m */,
-				98A8429324B25B95007F87F1 /* FinalComposeViewController.h */,
-				98A8429424B25B95007F87F1 /* FinalComposeViewController.m */,
+				986B146E24B7C0BC0012F68D /* AdditionalViewControllers */,
+				986B146D24B7C0AA0012F68D /* MessagesViewControllers */,
+				986B146C24B7C0940012F68D /* FeedViewControllers */,
+				986B146B24B7C0520012F68D /* UserProfileViewControllers */,
+				986B146A24B7C02F0012F68D /* StoriesViewControllers */,
+				986B146924B7C00F0012F68D /* CameraViewControllers */,
 				98596BCE24B1ADB9009C84CE /* LoginViewController.h */,
 				98596BCF24B1ADB9009C84CE /* LoginViewController.m */,
-				98596BD624B1BE8C009C84CE /* FeedViewController.h */,
-				98596BD724B1BE8C009C84CE /* FeedViewController.m */,
-				98E9951524B4DF4E0026BCD0 /* CommentsViewController.h */,
-				98E9951624B4DF4E0026BCD0 /* CommentsViewController.m */,
-				986B144C24B65D630012F68D /* ExploreViewController.h */,
-				986B144D24B65D630012F68D /* ExploreViewController.m */,
-				986B144F24B677780012F68D /* MentionsViewController.h */,
-				986B145024B677780012F68D /* MentionsViewController.m */,
-				986B145824B777D30012F68D /* MessagesViewController.h */,
-				986B145924B777D30012F68D /* MessagesViewController.m */,
-				986B145B24B777F90012F68D /* MessageThreadViewController.h */,
-				986B145C24B777F90012F68D /* MessageThreadViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		98A8429924B25D3C007F87F1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9875138E24B5435E00F95325 /* Stories.h */,
-				9875138F24B5435E00F95325 /* Stories.m */,
-				98A8429624B25CCD007F87F1 /* Post.h */,
-				98A8429724B25CCD007F87F1 /* Post.m */,
-				98E9950924B3D1130026BCD0 /* Comment.h */,
-				98E9950A24B3D1130026BCD0 /* Comment.m */,
-				98E9951224B3E0750026BCD0 /* User.h */,
-				98E9951324B3E0750026BCD0 /* User.m */,
-				986B145524B679BB0012F68D /* Mention.h */,
-				986B145624B679BB0012F68D /* Mention.m */,
-				986B145E24B779420012F68D /* Message.h */,
-				986B145F24B779420012F68D /* Message.m */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F2EB4FF89F9DE507714DF187 /* Frameworks */ = {
@@ -587,7 +698,6 @@
 			files = (
 				98E9951424B3E0750026BCD0 /* User.m in Sources */,
 				986B145724B679BB0012F68D /* Mention.m in Sources */,
-				9875139024B5435F00F95325 /* Stories.m in Sources */,
 				9875138424B53B9300F95325 /* ProfileCell.m in Sources */,
 				9875138D24B5415500F95325 /* StoryViewController.m in Sources */,
 				98596BD024B1ADB9009C84CE /* LoginViewController.m in Sources */,
