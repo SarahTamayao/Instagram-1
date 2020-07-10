@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UILabel *mainLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
+@property (strong, nonatomic) IBOutlet UIView *view;
 
 @end
 
@@ -61,6 +63,7 @@
  #pragma mark - Animation
 - (IBAction)editBegin:(id)sender {
     NSLog(@"Here");
+    [self.view removeConstraint:self.topConstraint];
     [UIView animateWithDuration:0.3 animations:^{
         [self.loginButton setBackgroundColor:[UIColor systemBlueColor]];
         self.passwordField.frame = CGRectMake(self.passwordField.frame.origin.x, self.passwordField.frame.origin.y - 100, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
@@ -70,6 +73,9 @@
     }];
 }
 - (IBAction)editEnd:(id)sender {
+    NSLayoutConstraint *con1 = [NSLayoutConstraint constraintWithItem:self.mainLabel attribute:NSLayoutAttributeLeading relatedBy:0 toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1 constant:20];
+    [self.view addConstraint:con1];
+    [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
         self.passwordField.frame = CGRectMake(self.passwordField.frame.origin.x, self.passwordField.frame.origin.y + 100, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
         self.usernameField.frame = CGRectMake(self.usernameField.frame.origin.x, self.usernameField.frame.origin.y + 100, self.usernameField.frame.size.width, self.usernameField.frame.size.height);

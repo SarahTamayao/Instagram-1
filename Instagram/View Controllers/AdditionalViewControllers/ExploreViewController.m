@@ -10,11 +10,14 @@
 #import "ProfileCell.h"
 #import "CommentsViewController.h"
 #import "Post.h"
+#import "SearchViewController.h"
 
-@interface ExploreViewController () < UICollectionViewDelegate, UICollectionViewDataSource, ProfileCellDelegate>
+@interface ExploreViewController () < UICollectionViewDelegate, UICollectionViewDataSource, ProfileCellDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) NSString *text;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -22,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.searchBar.delegate = self;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -76,11 +80,30 @@
     self.post = post;
     [self performSegueWithIdentifier:@"detailsSegue" sender:nil];
 }
+#pragma mark - SearchBar Delegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if(searchText !=0){
+        self.text = searchText;
+        NSLog(@"%@", searchText);
+        [self performSegueWithIdentifier:@"searchSegue" sender:nil];
+    }
+    
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"SEGUEEE");
+    [self performSegueWithIdentifier:@"searchSegue" sender:nil];
+}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CommentsViewController *commentsViewController = [segue destinationViewController];
-    commentsViewController.post = self.post;
+    if([segue.identifier isEqual:@"searchSegue"]){
+        SearchViewController *searchViewController = [segue destinationViewController];
+        searchViewController.text = self.text;
+    }else{
+        CommentsViewController *commentsViewController = [segue destinationViewController];
+        commentsViewController.post = self.post;
+    }
 }
 
 

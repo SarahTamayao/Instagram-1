@@ -192,6 +192,18 @@
             postQuery.limit = 20;
             [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
                 if (posts) {
+                    if(posts.count == 0){
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Welcome"
+                               message:@"Looks like you don't follow any users, check out the Explore Page to start!"
+                        preferredStyle:(UIAlertControllerStyleAlert)];
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                           style:UIAlertActionStyleDefault
+                                                                         handler:^(UIAlertAction * _Nonnull action) {
+                        }];
+                        [alert addAction:okAction];
+                        [self presentViewController:alert animated:YES completion:^{
+                        }];
+                    }
                     NSLog(@"%@", posts);
                     self.posts = [posts mutableCopy];
                     self.dataSkip = posts.count;
@@ -236,15 +248,25 @@
     }];
 }
 - (void)fetchStories {
-    PFQuery *storyQuery = [Stories query];
-    [storyQuery orderByDescending:@"createdAt"];
-    [storyQuery includeKey:@"author"];
-    storyQuery.limit = 20;
-    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray<Stories *> * _Nullable stories, NSError * _Nullable error) {
-        if (stories) {
-            NSLog(@"%@", stories);
-            self.stories = stories;
-            [self.collectionView reloadData];
+    
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable following, NSError * _Nullable error) {
+        if (following) {
+            PFQuery *storyQuery = [Stories query];
+            [storyQuery orderByDescending:@"createdAt"];
+            [storyQuery whereKey:@"author" containedIn:following];
+            [storyQuery includeKey:@"author"];
+            storyQuery.limit = 20;
+            [storyQuery findObjectsInBackgroundWithBlock:^(NSArray<Stories *> * _Nullable stories, NSError * _Nullable error) {
+                if (stories) {
+                    NSLog(@"%@", stories);
+                    self.stories = stories;
+                    [self.collectionView reloadData];
+                }
+            }];
         }
     }];
 }

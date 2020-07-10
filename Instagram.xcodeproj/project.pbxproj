@@ -31,6 +31,7 @@
 		986B146624B77D820012F68D /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B146524B77D820012F68D /* UserCell.m */; };
 		986B147B24B8D9720012F68D /* Stories.h in Sources */ = {isa = PBXBuildFile; fileRef = 986B147124B7C0F20012F68D /* Stories.h */; };
 		986B147C24B8D9720012F68D /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B147224B7C0F30012F68D /* Stories.m */; };
+		986B148924B914E80012F68D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B148824B914E80012F68D /* SearchViewController.m */; };
 		9875138424B53B9300F95325 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138324B53B9300F95325 /* ProfileCell.m */; };
 		9875138A24B5403800F95325 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138924B5403800F95325 /* StoriesViewController.m */; };
 		9875138D24B5415500F95325 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138C24B5415500F95325 /* StoryViewController.m */; };
@@ -115,6 +116,8 @@
 		986B146524B77D820012F68D /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		986B147124B7C0F20012F68D /* Stories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stories.h; sourceTree = "<group>"; };
 		986B147224B7C0F30012F68D /* Stories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
+		986B148724B914E80012F68D /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		986B148824B914E80012F68D /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		9875138324B53B9300F95325 /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		9875138824B5403800F95325 /* StoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoriesViewController.h; sourceTree = "<group>"; };
 		9875138924B5403800F95325 /* StoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
@@ -330,6 +333,8 @@
 				986B144D24B65D630012F68D /* ExploreViewController.m */,
 				986B144F24B677780012F68D /* MentionsViewController.h */,
 				986B145024B677780012F68D /* MentionsViewController.m */,
+				986B148724B914E80012F68D /* SearchViewController.h */,
+				986B148824B914E80012F68D /* SearchViewController.m */,
 			);
 			path = AdditionalViewControllers;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				986B145724B679BB0012F68D /* Mention.m in Sources */,
 				9875138424B53B9300F95325 /* ProfileCell.m in Sources */,
 				9875138D24B5415500F95325 /* StoryViewController.m in Sources */,
+				986B148924B914E80012F68D /* SearchViewController.m in Sources */,
 				98596BD024B1ADB9009C84CE /* LoginViewController.m in Sources */,
 				98E9950324B3CA720026BCD0 /* HeaderView.m in Sources */,
 				98596BD824B1BE8C009C84CE /* FeedViewController.m in Sources */,

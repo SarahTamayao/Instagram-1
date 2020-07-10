@@ -10,6 +10,7 @@
 #import "User.h"
 #import "ProfileCell.h"
 #import "CommentsViewController.h"
+#import "MessageThreadViewController.h"
 @import Parse;
 
 
@@ -93,13 +94,17 @@
                     }
                 }
                 self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
-                self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
+                NSLog(@"following count: %ld", following.count);
             }];
         }
         NSLog(@"%d", self.followerCount);
     }];
+    PFRelation *relation = [self.user relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+        self.followingLabel.text = [NSString stringWithFormat:@"%d", following.count];
+    }];
 }
-
 
 #pragma mark - CollectionView Delegate
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -175,9 +180,19 @@
         }
     }];
 }
+#pragma mark - Message
+- (IBAction)onMessage:(id)sender {
+    [self performSegueWithIdentifier:@"toMessage" sender:nil];
+}
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CommentsViewController *commentsViewController = [segue destinationViewController];
-    commentsViewController.post = self.post;
+    if([segue.identifier isEqual:@"toMessage"]){
+        MessageThreadViewController *messageThreadViewController = [segue destinationViewController];
+        messageThreadViewController.user = self.user;
+    }else{
+        CommentsViewController *commentsViewController = [segue destinationViewController];
+        commentsViewController.post = self.post;
+    }
+    
 }
 @end

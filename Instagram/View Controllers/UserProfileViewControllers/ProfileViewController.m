@@ -89,10 +89,14 @@
                         self.followerCount += 1;
                     }
                 }
-                self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
                 self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
             }];
         }
+    }];
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
+        self.followingLabel.text = [NSString stringWithFormat:@"%d", following.count];
     }];
 }
 

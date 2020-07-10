@@ -8,6 +8,7 @@
 
 #import "Post.h"
 #import "Comment.h"
+
 @implementation Post
     
 @dynamic postID;

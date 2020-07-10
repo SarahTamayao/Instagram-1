@@ -42,7 +42,6 @@
     sepiaGestureRecognizer.numberOfTapsRequired = 1;
     [self.sepiaImage setUserInteractionEnabled:YES];
     [self.sepiaImage addGestureRecognizer:sepiaGestureRecognizer];
-    self.sepiaLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     UIImage *sepiaImage = [self makeSepiaScale:self.mainImage.image];
     self.sepiaImage.image = sepiaImage;
 }
