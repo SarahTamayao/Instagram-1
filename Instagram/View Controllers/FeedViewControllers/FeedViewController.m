@@ -124,17 +124,20 @@
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray* _Nullable likedBy, NSError * _Nullable error) {
         if (!error) {
+            bool unliked;
             if(likedBy.count >0){
-                for(NSDictionary *like in likedBy)
+                for(PFUser *like in likedBy)
                 {
                     if([like[@"username"] isEqual:[PFUser currentUser].username]){
-                        [self likePostCell:postCell];
-                    }else{
                         [self unlikePostCell:postCell];
+                        unliked = true;
+                        break;
                     }
+                }if(!unliked){
+                    [self likePostCell:postCell];
                 }
             }else{
-                [self unlikePostCell:postCell];
+                [self likePostCell:postCell];
             }
         }
     }];
@@ -191,7 +194,7 @@
                 if (posts) {
                     NSLog(@"%@", posts);
                     self.posts = [posts mutableCopy];
-                    self.dataSkip = 20;
+                    self.dataSkip = posts.count;
                     [self.tableView reloadData];
                 }
             }];
@@ -200,24 +203,35 @@
     }];
 }
 - (void)fecthMorePost {
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    [postQuery setSkip:self.dataSkip];
-    postQuery.limit = 20;
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            if (posts.count > 0) {
-                int prevNumPosts = self.posts.count;
-                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
-                NSMutableArray *newIndexPaths = [NSMutableArray array];
-                for (int i = prevNumPosts; i < self.posts.count; i++) {
-                    [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"Following"];
+    PFQuery *query = [relation query];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable following, NSError * _Nullable error) {
+        if (following) {
+            NSLog(@"%@", following);
+            PFQuery *postQuery = [Post query];
+            [postQuery orderByDescending:@"createdAt"];
+            [postQuery whereKey:@"author" containedIn:following];
+            [postQuery includeKey:@"author"];
+            postQuery.limit = 20;
+            [postQuery setSkip:self.dataSkip];
+            [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+                if (posts) {
+                    if (posts.count > 0) {
+                        int prevNumPosts = self.posts.count;
+                        self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+                        NSMutableArray *newIndexPaths = [NSMutableArray array];
+                        for (int i = prevNumPosts; i < self.posts.count; i++) {
+                            [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                        }
+                        self.dataSkip += posts.count;
+                    }
+                    self.isMoreDataLoading = false;
+                    [self.tableView reloadData];
                 }
-                self.dataSkip += 20;
-            }
-            self.isMoreDataLoading = false;
-            [self.tableView reloadData];
+            }];
+            
         }
     }];
 }

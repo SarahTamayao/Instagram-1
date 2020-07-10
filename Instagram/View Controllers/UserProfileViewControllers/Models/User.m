@@ -10,7 +10,7 @@
 
 @implementation User
 
-@dynamic password
-@dynamic username
-@dynamic profilePic
+@dynamic password;
+@dynamic username;
+@dynamic profilePic;
 @end

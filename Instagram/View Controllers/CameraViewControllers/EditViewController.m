@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *grayImage;
 @property (weak, nonatomic) IBOutlet UIImageView *mainImage;
 @property (weak, nonatomic) IBOutlet UIImageView *originalImage;
+@property (weak, nonatomic) IBOutlet UIImageView *sepiaImage;
+@property (weak, nonatomic) IBOutlet UILabel *sepiaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *normalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *grayLabel;
 @end
@@ -36,6 +38,13 @@
     self.originalImage.image = self.image;
     UIImage *grayImage = [self grayscaleImage:self.mainImage.image];
     self.grayImage.image = grayImage;
+    UITapGestureRecognizer *sepiaGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSepia:)];
+    sepiaGestureRecognizer.numberOfTapsRequired = 1;
+    [self.sepiaImage setUserInteractionEnabled:YES];
+    [self.sepiaImage addGestureRecognizer:sepiaGestureRecognizer];
+    self.sepiaLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    UIImage *sepiaImage = [self makeSepiaScale:self.mainImage.image];
+    self.sepiaImage.image = sepiaImage;
 }
 
 #pragma mark - Editing
@@ -46,17 +55,34 @@
                                     withInputParameters: @{kCIInputSaturationKey : @0.0}];
     return [UIImage imageWithCIImage:grayscale];
 }
+-(UIImage*)makeSepiaScale:(UIImage*)image
+{
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIImage *sepia = [ciImage imageByApplyingFilter:@"CISepiaTone"];
+    return [UIImage imageWithCIImage:sepia];
+}
 
 - (IBAction)didTapGray:(UISwipeGestureRecognizer *)sender {
     self.grayLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    self.sepiaLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
     self.normalLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
     self.mainImage.image = self.grayImage.image;
+    self.image = self.grayImage.image;
 }
 
 - (IBAction)didTapOriginal:(UISwipeGestureRecognizer *)sender {
     self.normalLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     self.grayLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-    self.mainImage.image = self.image;
+    self.sepiaLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    self.mainImage.image = self.originalImage.image;
+    self.image = self.originalImage.image;
+}
+- (IBAction)didTapSepia:(UISwipeGestureRecognizer *)sender {
+    self.normalLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    self.grayLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    self.sepiaLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    self.mainImage.image = self.sepiaImage.image;
+    self.image = self.sepiaImage.image;
 }
 
 #pragma mark - Navigation

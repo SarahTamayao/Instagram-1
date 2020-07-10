@@ -81,7 +81,6 @@
         UIImage *fixedImage = [self fixOrientation:image];
         UIImage *resizedImage = [self resizeImage:fixedImage withSize:CGSizeMake(960, 1440)];
         self.image = resizedImage;
-        
         [self performSegueWithIdentifier:@"editSegue" sender:nil];
     }
 }
@@ -99,7 +98,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    self.image = editedImage;
+    UIImage *fixedImage = [self fixOrientation:editedImage];
+    UIImage *resizedImage = [self resizeImage:fixedImage withSize:CGSizeMake(960, 1440)];
+    self.image = resizedImage;
     [self performSegueWithIdentifier:@"editSegue" sender:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

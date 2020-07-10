@@ -90,9 +90,9 @@
                     }
                 }
                 self.followingLabel.text = [NSString stringWithFormat:@"%ld", following.count];
+                self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
             }];
         }
-        self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
     }];
 }
 

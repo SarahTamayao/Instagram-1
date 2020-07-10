@@ -84,7 +84,6 @@
             }];
         }
     }];
-    
 }
 
 #pragma mark - TableView Delegate

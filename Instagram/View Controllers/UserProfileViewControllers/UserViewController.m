@@ -129,16 +129,19 @@
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable following, NSError * _Nullable error) {
         if (!error) {
+            bool unfollowed;
             NSLog(@"%@", following);
             if(following.count >0){
                 for(PFUser *user in following)
                 {
-                    NSLog(@"%@", user);
                     if([user[@"username"] isEqual:self.user.username]){
                         [self unfollow];
-                    }else{
-                        [self follow];
+                        unfollowed = true;
+                        break;
                     }
+                }
+                if(!unfollowed) {
+                    [self follow];
                 }
             }else{
                 [self follow];
@@ -153,7 +156,7 @@
     [currenUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Unfollowing %@", self.user.username);
-            self.followerCount -=2;
+            self.followerCount -=1;
             self.followersLabel.text = [NSString stringWithFormat:@"%d", self.followerCount];
             self.followButton.titleLabel.text = @"Follow";
         }

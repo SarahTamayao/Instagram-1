@@ -29,6 +29,8 @@
 		986B146024B779420012F68D /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B145F24B779420012F68D /* Message.m */; };
 		986B146324B77B830012F68D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B146224B77B830012F68D /* MessageCell.m */; };
 		986B146624B77D820012F68D /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B146524B77D820012F68D /* UserCell.m */; };
+		986B147B24B8D9720012F68D /* Stories.h in Sources */ = {isa = PBXBuildFile; fileRef = 986B147124B7C0F20012F68D /* Stories.h */; };
+		986B147C24B8D9720012F68D /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = 986B147224B7C0F30012F68D /* Stories.m */; };
 		9875138424B53B9300F95325 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138324B53B9300F95325 /* ProfileCell.m */; };
 		9875138A24B5403800F95325 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138924B5403800F95325 /* StoriesViewController.m */; };
 		9875138D24B5415500F95325 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9875138C24B5415500F95325 /* StoryViewController.m */; };
@@ -270,8 +272,8 @@
 		986B146A24B7C02F0012F68D /* StoriesViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				986B147024B7C0DB0012F68D /* Views */,
 				986B146F24B7C0D40012F68D /* Models */,
+				986B147024B7C0DB0012F68D /* Views */,
 				9875138824B5403800F95325 /* StoriesViewController.h */,
 				9875138924B5403800F95325 /* StoriesViewController.m */,
 				9875138B24B5415500F95325 /* StoryViewController.h */,
@@ -283,8 +285,8 @@
 		986B146B24B7C0520012F68D /* UserProfileViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				986B147A24B7C1BA0012F68D /* Views */,
-				986B147924B7C1B50012F68D /* Models */,
+				986B148424B8E1830012F68D /* Views */,
+				986B148324B8E17E0012F68D /* Models */,
 				98E9950C24B3DD480026BCD0 /* ProfileViewController.h */,
 				98E9950D24B3DD480026BCD0 /* ProfileViewController.m */,
 				98E9951F24B527F80026BCD0 /* UserViewController.h */,
@@ -296,8 +298,8 @@
 		986B146C24B7C0940012F68D /* FeedViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				986B147824B7C15E0012F68D /* Models */,
-				986B147724B7C1590012F68D /* Views */,
+				986B148224B8E1690012F68D /* Models */,
+				986B148124B8E1630012F68D /* Views */,
 				98596BD624B1BE8C009C84CE /* FeedViewController.h */,
 				98596BD724B1BE8C009C84CE /* FeedViewController.m */,
 				98E9951524B4DF4E0026BCD0 /* CommentsViewController.h */,
@@ -309,8 +311,8 @@
 		986B146D24B7C0AA0012F68D /* MessagesViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				986B147624B7C13D0012F68D /* Views */,
-				986B147524B7C1380012F68D /* Models */,
+				986B148024B8E14B0012F68D /* Models */,
+				986B147F24B8E1440012F68D /* Views */,
 				986B145824B777D30012F68D /* MessagesViewController.h */,
 				986B145924B777D30012F68D /* MessagesViewController.m */,
 				986B145B24B777F90012F68D /* MessageThreadViewController.h */,
@@ -322,8 +324,8 @@
 		986B146E24B7C0BC0012F68D /* AdditionalViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				986B147424B7C10E0012F68D /* Models */,
-				986B147324B7C1010012F68D /* Views */,
+				986B147E24B8E12D0012F68D /* Models */,
+				986B147D24B8E1250012F68D /* Views */,
 				986B144C24B65D630012F68D /* ExploreViewController.h */,
 				986B144D24B65D630012F68D /* ExploreViewController.m */,
 				986B144F24B677780012F68D /* MentionsViewController.h */,
@@ -350,7 +352,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		986B147324B7C1010012F68D /* Views */ = {
+		986B147D24B8E1250012F68D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				986B145224B678810012F68D /* MentionsCell.h */,
@@ -359,7 +361,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		986B147424B7C10E0012F68D /* Models */ = {
+		986B147E24B8E12D0012F68D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				986B145524B679BB0012F68D /* Mention.h */,
@@ -368,16 +370,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		986B147524B7C1380012F68D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				986B145E24B779420012F68D /* Message.h */,
-				986B145F24B779420012F68D /* Message.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		986B147624B7C13D0012F68D /* Views */ = {
+		986B147F24B8E1440012F68D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				986B146124B77B830012F68D /* MessageCell.h */,
@@ -386,21 +379,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		986B147724B7C1590012F68D /* Views */ = {
+		986B148024B8E14B0012F68D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				986B145E24B779420012F68D /* Message.h */,
+				986B145F24B779420012F68D /* Message.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		986B148124B8E1630012F68D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				98E9951824B4E36A0026BCD0 /* CommentCell.h */,
+				98E9951924B4E36A0026BCD0 /* CommentCell.m */,
 				9888FBA424B39475005A9D86 /* PostCell.h */,
 				9888FBA524B39475005A9D86 /* PostCell.m */,
 				98E9950124B3CA720026BCD0 /* HeaderView.h */,
 				98E9950224B3CA720026BCD0 /* HeaderView.m */,
 				98E9950424B3CA820026BCD0 /* HeaderView.xib */,
-				98E9951824B4E36A0026BCD0 /* CommentCell.h */,
-				98E9951924B4E36A0026BCD0 /* CommentCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		986B147824B7C15E0012F68D /* Models */ = {
+		986B148224B8E1690012F68D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				98A8429624B25CCD007F87F1 /* Post.h */,
@@ -411,7 +413,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		986B147924B7C1B50012F68D /* Models */ = {
+		986B148324B8E17E0012F68D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				98E9951224B3E0750026BCD0 /* User.h */,
@@ -420,7 +422,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		986B147A24B7C1BA0012F68D /* Views */ = {
+		986B148424B8E1830012F68D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				98E9951B24B4FD470026BCD0 /* ProfileCell.h */,
@@ -696,6 +698,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				986B147B24B8D9720012F68D /* Stories.h in Sources */,
+				986B147C24B8D9720012F68D /* Stories.m in Sources */,
 				98E9951424B3E0750026BCD0 /* User.m in Sources */,
 				986B145724B679BB0012F68D /* Mention.m in Sources */,
 				9875138424B53B9300F95325 /* ProfileCell.m in Sources */,
