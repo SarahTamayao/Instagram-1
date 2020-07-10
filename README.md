@@ -2,7 +2,7 @@
 
 **Instagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **9** hours spent in total
+Time spent: **22** hours spent in total
 
 ## User Stories
 
@@ -43,6 +43,8 @@ The following **additional** features are implemented:
 - [x] User can access a explore page with a global feed to find more users to follow
 - [x] User can access a mentions page that displays likes on their postws from other users
 - [x] User can send and receive direct messages
+- [x] User can search for any user and follow or message them
+- [x] Autolayout incorporated to all view controllers
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
